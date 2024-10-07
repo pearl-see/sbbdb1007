@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mysite.sbbmybatis.MessageMapper">
+    <select id="getMessageById" resultType="com.mysite.project.Message">
+        SELECT * FROM nums WHERE id = #{id}
+    </select>
+    
+    <insert id="insertMessage" parameterType="com.mysite.project.Message">
+    	INSERT INTO nums (message) VALUES (#{message})
+    </insert>
+
+    <select id="getMessagesLimit10" resultType="com.mysite.project.Message">
+        SELECT * FROM nums ORDER BY id DESC LIMIT 10;
+    </select>
+    
+    <select id="getMessagesWithPaging" resultType="com.mysite.project.Message">
+        SELECT * FROM nums ORDER BY id DESC LIMIT #{size} OFFSET #{offset};
+    </select>
+    
+    <select id="countTotal" resultType="Integer">
+    	SELECT COUNT(*) FROM nums;
+    </select>
+</mapper>
